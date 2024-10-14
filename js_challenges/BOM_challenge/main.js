@@ -6,6 +6,7 @@ let obj ={
 };
 window.localStorage.clear();
 add.addEventListener("click",function(){
+    if(input.value!==""){
     obj.id=window.localStorage.length+1;
     obj.title=input.value;
    window.localStorage.setItem(`task${obj.id}`,obj.title);
@@ -13,23 +14,26 @@ add.addEventListener("click",function(){
    div.id=obj.id;
    div.className="my-task";
    let task=document.createTextNode(input.value);
+   div.appendChild(task);
    let del = document.createElement("input");
-del.type = "button"; // Changed submit to button
-del.value = "Delete";
-del.className = "del";
-div.appendChild(task);
-div.appendChild(del);
-
-tasks.appendChild(div);
+   del.type = "button"; // Changed submit to button
+   del.value = "Delete";
+   del.className = "del";
    
-del.addEventListener("click", function (e) {
-    // Remove from localStorage
-    localStorage.removeItem(`task${div.id}`);
-    // Remove task div from DOM
-    div.remove();
-});
-
+   div.appendChild(del);
    
+   tasks.appendChild(div);
+      
+   del.addEventListener("click", function (e) {
+       // Remove from localStorage
+       localStorage.removeItem(`task${div.id}`);
+       // Remove task div from DOM
+       div.remove();
+   });
+   
+      
+    }
+  
    
 
 }) ;
